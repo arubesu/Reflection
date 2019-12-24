@@ -10,7 +10,36 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
-			ChangeLinqExpression();
+			PrintAssemblyInformation();
+		}
+
+		private static void PrintAssemblyInformation()
+		{
+			//Tasks
+			//1 - Get Assembly full name 
+			Assembly assembly = Assembly.GetExecutingAssembly();
+			Console.WriteLine($"Assembly: {assembly.FullName}");
+
+			//2 - Get Assembly Version
+			var assemblyIdentity = assembly.GetName();
+			Console.WriteLine($"Version: {assemblyIdentity.Version}");
+			//3 - Check whether assembly is in GAC - Global Assembly cache
+			Console.WriteLine($"Assembly in GAC: {assembly.GlobalAssemblyCache}");
+			//4- Discover all moddules, types and members
+
+			foreach (var module in assembly.GetModules())
+			{
+				Console.WriteLine($"Module: {module.Name}");
+				foreach (var type in module.GetTypes())
+				{
+					Console.WriteLine($"\tType: {type.Name}");
+
+					foreach (var member in type.GetMembers())
+					{
+						Console.WriteLine($"\t\tMember:{member.Name} ({member.MemberType})");
+					}
+				}
+			}
 		}
 
 		private static void ChangeLinqExpression()
