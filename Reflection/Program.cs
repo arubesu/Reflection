@@ -10,7 +10,19 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
-			PrintAssemblyInformation();
+			GetPropertiesInfo();
+		}
+
+		private static void GetPropertiesInfo()
+		{
+			var type = typeof(Dog);
+			var properties = type.GetProperties();
+			foreach (var property in properties)
+			{
+				Console.WriteLine($"Name: {property.Name}");
+				Console.WriteLine($"Can Read: {property.CanRead}");
+				Console.WriteLine($"Can Write: {property.CanWrite}\n");
+			}
 		}
 
 		private static void PrintAssemblyInformation()
