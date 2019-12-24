@@ -1,6 +1,7 @@
 ﻿using Reflection.Attributes;
 using System;
 using System.Reflection;
+using System.Linq.Expressions;
 
 namespace Reflection
 {
@@ -8,6 +9,33 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
+			LinqExpression();
+
+		}
+
+		private static void LinqExpression()
+		{
+			//Divide delegate
+			Func<float, float> half = (number) => number / 2;
+
+			//Doing the same with Linq Expressions
+
+			ParameterExpression parameterExpression = Expression.Parameter(typeof(float), "Number");
+			ConstantExpression constantExpression = Expression.Constant(2f, typeof(float));
+			BinaryExpression binaryExpression = Expression.Divide(parameterExpression, constantExpression);
+
+			//Create Expression Tree
+
+			Expression<Func<float, float>> expression =
+				Expression.Lambda<Func<float, float>>(
+					binaryExpression,
+					new ParameterExpression[] { parameterExpression });
+
+			var halfExpression = expression.Compile();
+
+			var number = 9;
+
+			Console.WriteLine($"The half from {number} is {halfExpression(number)}");
 		}
 
 		private static void PrintAssembliesNames()
