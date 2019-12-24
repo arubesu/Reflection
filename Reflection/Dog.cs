@@ -9,5 +9,7 @@ namespace Reflection
 	{
 		public string Name { get; set; }
 		public string Color { get; set; }
+
+		public void Bark() => Console.WriteLine("Rowf Rowf");
 	}
 }

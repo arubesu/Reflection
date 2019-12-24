@@ -7,13 +7,30 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
+			PrintMembers();
+		}
+
+		private static void PrintMembers()
+		{
+			var type = GetDogType();
+			var members = type.GetMembers();
+			foreach (var member in members)
+			{
+				Console.WriteLine(member);
+			}
 		}
 
 		private static void GetClassType()
 		{
+			Type type = GetDogType();
+			Console.WriteLine($"The class is from {type} Type");
+		}
+
+		private static Type GetDogType()
+		{
 			var dog = new Dog();
 			var type = dog.GetType();
-			Console.WriteLine($"The class is from {type} Type");
+			return type;
 		}
 
 		private static void GetClassAttribute()
