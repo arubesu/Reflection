@@ -6,7 +6,14 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			CheckIfDogIsSerializable();
+		}
+
+		private static void CheckIfDogIsSerializable()
+		{
+			var result = Attribute.IsDefined(typeof(Dog), typeof(SerializableAttribute)) ?
+							"Yes" : "No";
+			Console.WriteLine(result);
 		}
 	}
 }
