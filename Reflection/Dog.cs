@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Reflection.Attributes;
+using System;
 
 namespace Reflection
 {
 	[Serializable]
+	[Label("Animal")]
 	public class Dog
 	{
 		public string Name { get; set; }

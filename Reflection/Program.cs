@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reflection.Attributes;
+using System;
 
 namespace Reflection
 {
@@ -6,7 +7,13 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
-			CheckIfDogIsSerializable();
+			GetClassAttribute();
+		}
+
+		private static void GetClassAttribute()
+		{
+			var label = ((LabelAttribute)Attribute.GetCustomAttribute(typeof(Dog), typeof(LabelAttribute))).Label;
+			Console.WriteLine(label);
 		}
 
 		private static void CheckIfDogIsSerializable()
