@@ -11,5 +11,7 @@ namespace Reflection
 		public string Color { get; set; }
 
 		public void Bark() => Console.WriteLine("Rowf Rowf");
+
+		public override string ToString() => $"Name: {Name}\nColor: {Color}";
 	}
 }

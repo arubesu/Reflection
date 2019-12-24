@@ -7,7 +7,27 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
-			PrintMembers();
+			InvokeMethodByReflection();
+		}
+
+		private static void InvokeMethodByReflection()
+		{
+			Dog dog = GetDogInstance();
+
+			Console.WriteLine(dog.ToString());
+			var type = dog.GetType();
+
+			var methodInfo = type.GetMethod("set_Name");
+			methodInfo?.Invoke(dog, new object[] { "Thod Modified" });
+			Console.WriteLine(dog.ToString());
+		}
+
+		private static Dog GetDogInstance()
+		{
+			var dog = new Dog();
+			dog.Name = "Thor";
+			dog.Color = "Gray";
+			return dog;
 		}
 
 		private static void PrintMembers()
