@@ -1,5 +1,6 @@
 ﻿using Reflection.Attributes;
 using System;
+using System.Reflection;
 
 namespace Reflection
 {
@@ -7,7 +8,16 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
-			InvokeMethodByReflection();
+		}
+
+		private static void PrintAssembliesNames()
+		{
+			var assembly = Assembly.GetExecutingAssembly();
+			var types = assembly.GetTypes();
+			foreach (var type in types)
+			{
+				Console.WriteLine(type.Name);
+			}
 		}
 
 		private static void InvokeMethodByReflection()
