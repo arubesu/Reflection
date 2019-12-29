@@ -3,6 +3,7 @@ using System;
 using System.Reflection;
 using System.Linq.Expressions;
 using Reflection.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace Reflection
 {
@@ -10,8 +11,9 @@ namespace Reflection
 	{
 		static void Main(string[] args)
 		{
-			GetPropertiesInfo();
 		}
+
+		static string GetCallerName([CallerMemberName] string callerMemberName = null) => callerMemberName;
 
 		private static void GetPropertiesInfo()
 		{
